@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import static Entities.persona.crearUsuario;
 
 /*
-Hospital
+Hospital de maricones
 El ejercicio consiste en crear el sistema informatico de un hospital.
 
 caracteristicas: / 1000 habitaciones (individuales). / 300 camillas. / 50 medicos y 200 enfermer@s.
