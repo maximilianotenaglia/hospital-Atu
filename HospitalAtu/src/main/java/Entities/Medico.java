@@ -1,0 +1,48 @@
+package Entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Medico extends Persona {
+    int idMedico;
+    Especialidad especialidadMedica;
+    List<Object> pacientesAsignadosAlMedico = new ArrayList<>();
+
+    boolean alta;
+
+    public Medico(Atributo atributoPersona, String nombre, String dni, String direccion, int nroPuerta, int cp, int telefono, String email, String password, int idMedico, Especialidad especialidadMedica, boolean alta) {
+        super(atributoPersona, nombre, dni, direccion, nroPuerta, cp, telefono, email, password);
+        this.idMedico = idMedico;
+        this.especialidadMedica = especialidadMedica;
+        this.alta = alta;
+    }
+
+    public int getIdMedico() {
+        return idMedico;
+    }
+
+    public void setIdMedico(int idMedico) {
+        this.idMedico = idMedico;
+    }
+
+    public Especialidad getEspecialidadMedica() {
+        return especialidadMedica;
+    }
+
+    public void setEspecialidadMedica(Especialidad especialidadMedica) {
+        this.especialidadMedica = especialidadMedica;
+    }
+
+    public boolean isAlta() {
+        return alta;
+    }
+
+    public void setAlta(boolean alta) {
+        this.alta = alta;
+    }
+
+    public enum Especialidad {
+        MEDICODEFAMILIA, PEDIATRIA, ONCOLOGIA, DERMATOLOGIA, GINECOLOGIA
+    }
+
+}
