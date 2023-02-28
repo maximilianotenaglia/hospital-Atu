@@ -1,21 +1,17 @@
 package Services;
 
 import Entities.Paciente;
-import Entities.Persona;
 import Repository.PacienteRepository;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import static Entities.Persona.Atributo.PACIENTE;
-
 
 public class PacienteServices {
     public static Paciente usuarioActivoPaciente;
     static int id = 0;
     private static PacienteRepository pacienteRepository = new PacienteRepository();
 
+    /*
     public static Object crearNuevoPaciente() throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         boolean grabarUsuario = true;
@@ -45,11 +41,14 @@ public class PacienteServices {
         System.out.println("defina su password: ");
         String textoRecoger8 = buffer.readLine();
         if (grabarUsuario) {
-            return pacienteRepository.crearPaciente(new Paciente(PACIENTE, textoRecoger1, textoRecoger2, textoRecoger3, nroPuerta, cp, telefono, textoRecoger7, textoRecoger8, false, id++));
+            return null;
+            // return pacienteRepository.crearPaciente(new Paciente(PACIENTE, textoRecoger1, textoRecoger2, textoRecoger3, nroPuerta, cp, telefono, textoRecoger7, textoRecoger8, false, id++));
         }else {
             return "";
         }
     }
+
+
 
 
     public static void consultarHistorialMedico() {
@@ -69,4 +68,6 @@ public class PacienteServices {
         }
         return usuarioValido;
     }
+
+     */
 }

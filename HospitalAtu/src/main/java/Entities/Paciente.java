@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
-import static Entities.Enfermero.buffer;
 import static Services.PacienteServices.*;
 
 
-public class Paciente extends Persona {
+public class Paciente {
+
+    Persona persona;
     int id = 0;
     static String usuarioActivo;
     boolean altaMedica;
@@ -22,32 +22,43 @@ public class Paciente extends Persona {
     List<String> recetas = new ArrayList<>();
     List<String> enfermeroAsignado = new ArrayList<>();
     HashMap<Enum, String> medicosPorEspecialidad = new HashMap<>();
-    public static HashMap<Enum, String> registroEnfermedad = new HashMap<>(); // se utilizara para poder asignar la urgencia y la enfermedad
+    public static List<String> registroEnfermedad = new ArrayList<>();
 
     public static enum NivelUrgencia {
         BAJO, MEDIO, ALTO;
     }
 
-    public Paciente(Atributo atributoPersona, String nombre, String dni, String direccion, int nroPuerta, int cp, int telefono, String email, String password, boolean altaMedica, int id) {
-        super(atributoPersona, nombre, dni, direccion, nroPuerta, cp, telefono, email, password);
+    public Paciente(Persona persona, int id, boolean altaMedica, List<String> recetas, List<String> enfermeroAsignado, HashMap<Enum, String> medicosPorEspecialidad) {
+        this.persona = persona;
+        this.id = id;
         this.altaMedica = altaMedica;
+        this.recetas = recetas;
+        this.enfermeroAsignado = enfermeroAsignado;
+        this.medicosPorEspecialidad = medicosPorEspecialidad;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public HashMap<Enum, String> getRegistroEnfermedad() {
-        return registroEnfermedad;
+    public static String getUsuarioActivo() {
+        return usuarioActivo;
     }
 
-    public void setRegistroEnfermedad(HashMap<Enum, String> registroEnfermedad) {
-        this.registroEnfermedad = registroEnfermedad;
-    }
-
-    public List<String> getEnfermeroAsignado() {
-        return enfermeroAsignado;
-    }
-
-    public void setEnfermeroAsignado(List<String> enfermeroAsignado) {
-        this.enfermeroAsignado = enfermeroAsignado;
+    public static void setUsuarioActivo(String usuarioActivo) {
+        Paciente.usuarioActivo = usuarioActivo;
     }
 
     public boolean isAltaMedica() {
@@ -58,9 +69,8 @@ public class Paciente extends Persona {
         this.altaMedica = altaMedica;
     }
 
-
-    public static List<String> getHistorialMedico(int i) {
-        return Collections.singletonList(historialMedico.get(i));
+    public static List<String> getHistorialMedico() {
+        return historialMedico;
     }
 
     public static void setHistorialMedico(List<String> historialMedico) {
@@ -75,6 +85,14 @@ public class Paciente extends Persona {
         this.recetas = recetas;
     }
 
+    public List<String> getEnfermeroAsignado() {
+        return enfermeroAsignado;
+    }
+
+    public void setEnfermeroAsignado(List<String> enfermeroAsignado) {
+        this.enfermeroAsignado = enfermeroAsignado;
+    }
+
     public HashMap<Enum, String> getMedicosPorEspecialidad() {
         return medicosPorEspecialidad;
     }
@@ -83,17 +101,14 @@ public class Paciente extends Persona {
         this.medicosPorEspecialidad = medicosPorEspecialidad;
     }
 
-    public int getId() {
-        return id;
+    public static List<String> getRegistroEnfermedad() {
+        return registroEnfermedad;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static void setRegistroEnfermedad(List<String> registroEnfermedad) {
+        Paciente.registroEnfermedad = registroEnfermedad;
     }
-
-
-
-
+/*
     public static void menuPaciente() throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("MENU PACIENTE\n1- Consultar historial medico \n2- Salir ");
@@ -139,4 +154,6 @@ public class Paciente extends Persona {
     public static void loggOut() throws IOException {
         usuarioActivoPaciente = null;
     }
+
+ */
 }

@@ -1,53 +1,54 @@
 package Services;
 
 import Entities.Enfermero;
-import Entities.Paciente;
 import Repository.EnfermeroRepository;
-import Repository.PacienteRepository;
+import dto.EnfermeroDto;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Collections;
-import java.util.List;
+public class EnfermeroServiceImpl implements EnfermeroService {
+    // comunicacion con el repository
+    private EnfermeroRepository repository = new EnfermeroRepository();
+    private PersonaService personaService = new PersonaServiceImpl();
 
-import static Entities.Paciente.NivelUrgencia.*;
-import static Entities.Persona.Atributo.ENFERMERO;
-import static Repository.EnfermeroRepository.consultarEnfermeros;
-import static Repository.PacienteRepository.consultarPacientes;
-
-public class EnfermeroServices {
-    static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
     public static Enfermero usuarioActivoEnfermero;
-    static int idEnfermero = 0;
-    private static EnfermeroRepository enfermeroRepository = new EnfermeroRepository();
 
-    public static Object crearNuevoEnfermero() throws IOException {
-
-        System.out.println("Nombre completo: ");
-        String textoRecoger1 = buffer.readLine();
-        System.out.println("Numero de DNI: ");
-        String textoRecoger2 = buffer.readLine();
-        System.out.println("Direccion: ");
-        String textoRecoger3 = buffer.readLine();
-        System.out.println("nro Puerta: ");
-        String textoRecoger4 = buffer.readLine();
-        int nroPuerta = Integer.parseInt(textoRecoger4);
-        System.out.println("C.P.: ");
-        String textoRecoger5 = buffer.readLine();
-        int cp = Integer.parseInt(textoRecoger5);
-        System.out.println("Numero de telefono: ");
-        String textoRecoger6 = buffer.readLine();
-        int telefono = Integer.parseInt(textoRecoger6);
-        System.out.println("email: ");
-        String textoRecoger7 = buffer.readLine();
-        System.out.println("defina su password: ");
-        String textoRecoger8 = buffer.readLine();
-
-        return enfermeroRepository.crearEnfermero(new Enfermero(ENFERMERO, textoRecoger1, textoRecoger2, textoRecoger3, nroPuerta, cp, telefono, textoRecoger7, textoRecoger8, idEnfermero++, true));
+    @Override
+    public EnfermeroDto crearEnfermero(EnfermeroDto nuevoEnfermero) {
+        Enfermero enfermero = repository.crearEnfermero(dtoToEntiy(nuevoEnfermero));
+        return entityToDto(enfermero);
     }
 
-    public static boolean validarUsuario(String textoRecoger1, String textoRecoger2) {
+    private Enfermero dtoToEntiy(EnfermeroDto enfermeroDto) {
+
+        return new Enfermero(
+                enfermeroDto.getPersona().getId(),
+                enfermeroDto.getId(),
+                enfermeroDto.isAlta()
+        );
+    }
+
+    private EnfermeroDto entityToDto(Enfermero enfermero) {
+        // pentiende hacer entity a DTO
+        return new EnfermeroDto(
+                enfermero.getId(),
+                enfermero.isAlta(),
+                personaService.getPersonaById(enfermero.getPersonaId())
+        );
+    }
+}
+
+/*
+    @Override
+    public EnfermeroDto validaLogginEnfermero(EnfermeroDto nuevoEnfermero) {
+        repository.validaLogginEnfermero
+        return null;
+    }
+
+
+ */
+
+/*
+
+    public static void validarUsuario(String textoRecoger1, String textoRecoger2) {
         boolean usuarioValido = false;
         for (int i = 0; i < EnfermeroRepository.enfermeros.size(); i++) {
             if (EnfermeroRepository.enfermeros.get(i).getDni().equals(textoRecoger1)
@@ -59,6 +60,24 @@ public class EnfermeroServices {
         return usuarioValido;
     }
 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /*
     public static void consultarListaDePacientes() {
         System.out.println("ID - NOMBRE - DNI - ENFERMERO ASIGNADO - MEDICO ASIGNADO");
         for (int i = 0; i < PacienteRepository.pacientes.size(); i++) {
@@ -102,6 +121,28 @@ public class EnfermeroServices {
         String textoRecoger1 = buffer.readLine();
         int opcionPaciente = Integer.parseInt(textoRecoger1);
         Paciente pacienteSeleccionado = PacienteRepository.pacientes.get(opcionPaciente);
-        PacienteRepository.registroDeEnfermedad(pacienteSeleccionado);
+        System.out.println("Que desea realizar \n1 - Registrar nueva enfermedad. \n2 - Consultar Enfermedades \n3 - Borrar Enfermedad");
+        String textoRecoger2 = buffer.readLine();
+        int opcionRegistro = Integer.parseInt(textoRecoger2);
+        try {
+            switch (opcionRegistro) {
+                case 1:
+                    PacienteRepository.registroDeEnfermedad(pacienteSeleccionado);
+                    break;
+                case 2:
+                    PacienteRepository.consultarEnfermedad(pacienteSeleccionado);
+                    break;
+                case 3:
+                    PacienteRepository.borrarRegistroDeEnfermedad(pacienteSeleccionado);
+                    break;
+                default:
+                    System.out.println("Elija una opcion correcta.");
+                    registrarEnfermedad();
+                    break;
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("Elija una opcion correcta.");
+            registrarEnfermedad();
+        }
     }
-}
+*/

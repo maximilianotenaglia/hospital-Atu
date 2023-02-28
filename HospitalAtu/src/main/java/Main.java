@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import static Entities.Enfermero.validaLogginEnfermero;
-import static Entities.Paciente.validaLogginPaciente;
-import static Entities.Persona.crearUsuario;
 
 /*
 Hospital
@@ -47,76 +44,18 @@ y podreis consultar conmigo las dudas que tengais en cualquier momento.
  */
 public class Main {
     static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-    static boolean salirDeSistema = false;
+    public static boolean salirDeSistema = false;
 
     public static void main(String[] args) throws IOException {
         try {
             while (salirDeSistema == false) {
-                menuInicial();
+            //    menuInicial();
             }
         } catch (NumberFormatException ex) {
             System.out.println("Elija una opcion correcta.");
-            menuInicial();
+           // menuInicial();
         }
     }
 
-    public static void menuInicial() throws IOException {
 
-        System.out.println("MENU INICIAL \n1- Nuevo usuario\n2- Ingresar\n3- Salir del sistema.");
-        String textoRecoger1 = buffer.readLine();
-        int opcion = Integer.parseInt(textoRecoger1);
-        try {
-            switch (opcion) {
-                case 1:
-                    crearUsuario();
-                    break;
-                case 2:
-                    ingresar();
-                    break;
-                case 3:
-                    System.out.println("Saliendo del sistema.");
-                    salirDeSistema = true;
-                    break;
-                default:
-                    System.out.println("Elija una opcion correcta.");
-                    menuInicial();
-                    break;
-            }
-        } catch (NumberFormatException ex) {
-            System.out.println("Elija una opcion correcta.");
-            menuInicial();
-        }
-    }
-
-    public static void ingresar() throws IOException {
-        System.out.println("INDIQUE COMO DESEA LOGUEARSE: \n1- Paciente\n2- Enfermero\n3- Medico \n4- <-- Volver .");
-        String textoRecoger = buffer.readLine();
-        int opcionAtributo = Integer.parseInt(textoRecoger);
-        try {
-            while (opcionAtributo != 4) {
-                switch (opcionAtributo) {
-                    case 1:
-                        validaLogginPaciente();
-                        opcionAtributo = 4;
-                        break;
-                    case 2:
-                        validaLogginEnfermero();
-                        opcionAtributo = 4;
-                        break;
-                    case 3:
-
-                        break;
-                    case 4:
-                        break;
-                    default:
-                        System.out.println("Elija una opcion correcta.");
-                        menuInicial();
-                        break;
-                }
-            }
-        } catch (NumberFormatException ex) {
-            System.out.println("Elija una opcion correcta.");
-            ingresar();
-        }
-    }
 }
