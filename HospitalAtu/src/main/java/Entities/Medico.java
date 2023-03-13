@@ -3,17 +3,17 @@ package Entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Medico extends Persona {
+public class Medico  {
     int idMedico;
     Especialidad especialidadMedica;
     List<Object> pacientesAsignadosAlMedico = new ArrayList<>();
 
     boolean alta;
 
-    public Medico(Atributo atributoPersona, String nombre, String dni, String direccion, int nroPuerta, int cp, int telefono, String email, String password, int idMedico, Especialidad especialidadMedica, boolean alta) {
-        super(atributoPersona, nombre, dni, direccion, nroPuerta, cp, telefono, email, password);
+    public Medico(int idMedico, Especialidad especialidadMedica, List<Object> pacientesAsignadosAlMedico, boolean alta) {
         this.idMedico = idMedico;
         this.especialidadMedica = especialidadMedica;
+        this.pacientesAsignadosAlMedico = pacientesAsignadosAlMedico;
         this.alta = alta;
     }
 

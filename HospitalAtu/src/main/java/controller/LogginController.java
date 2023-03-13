@@ -60,7 +60,7 @@ public class LogginController {
                         opcionAtributo = 4;
                         break;
                     case 2:
-                        EnfermeroController.validaLogginEnfermero();
+                     //   EnfermeroController.validaLogginEnfermero();
                         opcionAtributo = 4;
                         break;
                     case 3:

@@ -3,18 +3,22 @@ package dto;
 import Entities.Persona;
 
 public class PersonaDto {
-    private int id;
-    Persona.Atributo atributoPersona;
-    String nombre;
-    String dni;
-    String direccion;
-    int nroPuerta;
-    int cp;
-    int telefono;
-    String email;
-    String password;
 
-    public PersonaDto(int id, Persona.Atributo atributoPersona, String nombre, String dni, String direccion, int nroPuerta, int cp, int telefono, String email, String password) {
+    private int id;
+    private Persona.Atributo atributoPersona;
+    private String nombre;
+    private String dni;
+    private String direccion;
+    private int nroPuerta;
+    private int cp;
+    private int telefono;
+    private String email;
+    private String password;
+
+    public PersonaDto(int id, Persona.Atributo atributoPersona,
+                      String nombre, String dni, String direccion,
+                      int nroPuerta, int cp, int telefono,
+                      String email, String password) {
         this.id = id;
         this.atributoPersona = atributoPersona;
         this.nombre = nombre;
@@ -105,5 +109,21 @@ public class PersonaDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonaDto{" +
+                "id=" + id +
+                ", atributoPersona=" + atributoPersona +
+                ", nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", nroPuerta=" + nroPuerta +
+                ", cp=" + cp +
+                ", telefono=" + telefono +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

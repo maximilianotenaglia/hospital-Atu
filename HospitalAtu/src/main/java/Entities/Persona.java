@@ -2,15 +2,38 @@ package Entities;
 
 public class Persona {
 
-    Atributo atributoPersona;
-    String nombre;
-    String dni;
-    String direccion;
-    int nroPuerta;
-    int cp;
-    int telefono;
-    String email;
-    String password;
+    private int id;
+    private Atributo atributoPersona;
+
+    private String nombre;
+    private String dni;
+    private String direccion;
+    private int nroPuerta;
+    private int cp;
+    private int telefono;
+    private String email;
+    private String password;
+
+    public Persona(int id, Atributo atributoPersona, String nombre, String dni, String direccion, int nroPuerta, int cp, int telefono, String email, String password) {
+        this.id = id;
+        this.atributoPersona = atributoPersona;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.direccion = direccion;
+        this.nroPuerta = nroPuerta;
+        this.cp = cp;
+        this.telefono = telefono;
+        this.email = email;
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Atributo getAtributoPersona() {
         return atributoPersona;
@@ -84,22 +107,7 @@ public class Persona {
         this.password = password;
     }
 
-    public Persona(Atributo atributoPersona, String nombre,
-                   String dni, String direccion,
-                   int nroPuerta, int cp, int telefono,
-                   String email, String password) {
-        this.atributoPersona = atributoPersona;
-        this.nombre = nombre;
-        this.dni = dni;
-        this.direccion = direccion;
-        this.nroPuerta = nroPuerta;
-        this.cp = cp;
-        this.telefono = telefono;
-        this.email = email;
-        this.password = password;
-    }
-
     public enum Atributo {
-        MEDICO, ENFERMERO, PACIENTE
+        MEDICO, ENFERMERO, PACIENTE, PERSONA
     }
 }

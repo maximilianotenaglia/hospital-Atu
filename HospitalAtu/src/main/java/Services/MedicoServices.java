@@ -6,6 +6,7 @@ import Repository.MedicoRepository;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import static Entities.Medico.Especialidad.*;
 import static Entities.Persona.Atributo.MEDICO;
@@ -59,8 +60,8 @@ public class MedicoServices {
                 break;
         }
 
-        return medicoRepository.crearMedico(new Medico(MEDICO, textoRecoger1, textoRecoger2, textoRecoger3,
-                nroPuerta, cp, telefono, textoRecoger7, textoRecoger8, idMedico, especialidadMedica, true));
+        return medicoRepository.crearMedico(new Medico(idMedico, especialidadMedica, new ArrayList<>(),true));
 
     }
+
 }

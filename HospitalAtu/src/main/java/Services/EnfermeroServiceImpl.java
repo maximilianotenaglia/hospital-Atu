@@ -13,24 +13,21 @@ public class EnfermeroServiceImpl implements EnfermeroService {
 
     @Override
     public EnfermeroDto crearEnfermero(EnfermeroDto nuevoEnfermero) {
-        Enfermero enfermero = repository.crearEnfermero(dtoToEntiy(nuevoEnfermero));
+        Enfermero enfermero = repository.save(dtoToEntiy(nuevoEnfermero));
         return entityToDto(enfermero);
     }
+
 
     private Enfermero dtoToEntiy(EnfermeroDto enfermeroDto) {
 
         return new Enfermero(
                 enfermeroDto.getPersona().getId(),
-                enfermeroDto.getId(),
-                enfermeroDto.isAlta()
-        );
+                enfermeroDto.getId());
     }
 
     private EnfermeroDto entityToDto(Enfermero enfermero) {
-        // pentiende hacer entity a DTO
         return new EnfermeroDto(
                 enfermero.getId(),
-                enfermero.isAlta(),
                 personaService.getPersonaById(enfermero.getPersonaId())
         );
     }

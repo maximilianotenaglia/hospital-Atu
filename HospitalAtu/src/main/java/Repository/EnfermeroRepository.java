@@ -1,18 +1,34 @@
 package Repository;
 
 import Entities.Enfermero;
-import Entities.Paciente;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class EnfermeroRepository {
-    private final static List<Enfermero> enfermeros = new ArrayList<>();
 
-    public Enfermero crearEnfermero(Enfermero obj1) {
-        enfermeros.add(obj1);
-        return obj1;
+    public Enfermero save(Enfermero enfermero) {
+        String query = "INSERT INTO ENFERMEROS (personaId) " +
+                "VALUES (?)";
+        try (PreparedStatement preparedStatement = H2Configuration.getConection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, enfermero.getPersonaId());
+
+            preparedStatement.executeUpdate();
+            ResultSet result = preparedStatement.getGeneratedKeys();
+
+            if (result.next()) {
+                int id = result.getInt(1);
+                enfermero.setId(id);
+            }
+
+            return enfermero;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
-
+}
 
 
     /*
@@ -27,4 +43,5 @@ public class EnfermeroRepository {
     }
 
     */
-}
+
+

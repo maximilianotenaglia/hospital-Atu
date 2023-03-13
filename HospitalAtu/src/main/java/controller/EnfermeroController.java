@@ -14,7 +14,7 @@ public class EnfermeroController {
 
     // comunicacion con el Services(impl)
     private EnfermeroService enfermeroService = new EnfermeroServiceImpl();
-
+/*
     public void crearNuevoEnfermero() throws IOException {
 
         System.out.println("Nombre completo: ");
@@ -37,13 +37,26 @@ public class EnfermeroController {
         System.out.println("defina su password: ");
         String password = buffer.readLine();
 
-        EnfermeroDto result = enfermeroService.crearEnfermero(new EnfermeroDto(0, true,
-                new PersonaDto(1, ENFERMERO, nombre, dni, direccion, nroPuerta, cp, telefono, email, password)
+        EnfermeroDto result = enfermeroService.crearEnfermero(new EnfermeroDto(
+                0,
+                new PersonaDto(1,
+                         ENFERMERO,
+                        nombre,
+                        dni,
+                        direccion,
+                        nroPuerta,
+                        cp,
+                        telefono,
+                        email,
+                        password)
         ));
         System.out.println(result);
 
         // return enfermeroRepository.crearEnfermero(new Enfermero(ENFERMERO, textoRecoger1, textoRecoger2, textoRecoger3, nroPuerta, cp, telefono, textoRecoger7, textoRecoger8, idEnfermero++, true));
     }
+
+
+ */
 
     public static void menuEnfermero() throws IOException {
         System.out.println("MENU ENFERMERO \n1- Asignar Enfermero al Paciente." +

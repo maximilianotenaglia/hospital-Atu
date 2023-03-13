@@ -1,3 +1,5 @@
+import controller.PersonaController;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,10 +47,13 @@ y podreis consultar conmigo las dudas que tengais en cualquier momento.
 public class Main {
     static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
     public static boolean salirDeSistema = false;
+    private static PersonaController personaController = new PersonaController();
 
     public static void main(String[] args) throws IOException {
         try {
             while (salirDeSistema == false) {
+                personaController.crearPersona();
+
             //    menuInicial();
             }
         } catch (NumberFormatException ex) {
@@ -56,6 +61,4 @@ public class Main {
            // menuInicial();
         }
     }
-
-
 }

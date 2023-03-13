@@ -8,14 +8,13 @@ public class Enfermero {
 
     private int personaId;
     private int id;
-    private boolean alta;
+
     private List<String> pacientesAsignadosAlEnfermero = new ArrayList<>();
 
-    public Enfermero(int personaId, int id, boolean alta)
+    public Enfermero(int personaId, int id)
                       {
         this.personaId = personaId;
         this.id = id;
-        this.alta = alta;
 
     }
 
@@ -35,13 +34,6 @@ public class Enfermero {
         this.id = id;
     }
 
-    public boolean isAlta() {
-        return alta;
-    }
-
-    public void setAlta(boolean alta) {
-        this.alta = alta;
-    }
 
     public List<String> getPacientesAsignadosAlEnfermero() {
         return pacientesAsignadosAlEnfermero;

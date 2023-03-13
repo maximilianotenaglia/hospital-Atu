@@ -1,40 +1,34 @@
 package Entities;
 
-import Services.PacienteServices;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import static Services.PacienteServices.*;
-
-
 public class Paciente {
 
-    Persona persona;
-    int id = 0;
-    static String usuarioActivo;
-    boolean altaMedica;
-    public static List<String> historialMedico = new ArrayList<>();
-    List<String> recetas = new ArrayList<>();
-    List<String> enfermeroAsignado = new ArrayList<>();
-    HashMap<Enum, String> medicosPorEspecialidad = new HashMap<>();
-    public static List<String> registroEnfermedad = new ArrayList<>();
+    private Persona persona;
+    private int personaId;
 
+    private int id = 0;
+    private static String usuarioActivo;
+    private boolean altaMedica;
+    private String historialMedico;
+    private String recetas;
+    private Enfermero enfermeroAsignado;
+    private Medico medicosPorEspecialidad;
     public static enum NivelUrgencia {
         BAJO, MEDIO, ALTO;
     }
 
-    public Paciente(Persona persona, int id, boolean altaMedica, List<String> recetas, List<String> enfermeroAsignado, HashMap<Enum, String> medicosPorEspecialidad) {
+    public Paciente(Persona persona, int personaId, int id, boolean altaMedica, String historialMedico, String recetas, Enfermero enfermeroAsignado, Medico medicosPorEspecialidad) {
         this.persona = persona;
+        this.personaId = personaId;
         this.id = id;
         this.altaMedica = altaMedica;
+        this.historialMedico = historialMedico;
         this.recetas = recetas;
         this.enfermeroAsignado = enfermeroAsignado;
         this.medicosPorEspecialidad = medicosPorEspecialidad;
+    }
+    public Paciente(int personaId, int id) {
+        this.personaId = personaId;
+        this.id = id;
     }
 
     public Persona getPersona() {
@@ -43,6 +37,14 @@ public class Paciente {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public int getPersonaId() {
+        return personaId;
+    }
+
+    public void setPersonaId(int personaId) {
+        this.personaId = personaId;
     }
 
     public int getId() {
@@ -69,80 +71,45 @@ public class Paciente {
         this.altaMedica = altaMedica;
     }
 
-    public static List<String> getHistorialMedico() {
+    public String getHistorialMedico() {
         return historialMedico;
     }
 
-    public static void setHistorialMedico(List<String> historialMedico) {
-        Paciente.historialMedico = historialMedico;
+    public void setHistorialMedico(String historialMedico) {
+        this.historialMedico = historialMedico;
     }
 
-    public List<String> getRecetas() {
+    public String getRecetas() {
         return recetas;
     }
 
-    public void setRecetas(List<String> recetas) {
+    public void setRecetas(String recetas) {
         this.recetas = recetas;
     }
 
-    public List<String> getEnfermeroAsignado() {
+    public Enfermero getEnfermeroAsignado() {
         return enfermeroAsignado;
     }
 
-    public void setEnfermeroAsignado(List<String> enfermeroAsignado) {
+    public void setEnfermeroAsignado(Enfermero enfermeroAsignado) {
         this.enfermeroAsignado = enfermeroAsignado;
     }
 
-    public HashMap<Enum, String> getMedicosPorEspecialidad() {
+    public Medico getMedicosPorEspecialidad() {
         return medicosPorEspecialidad;
     }
 
-    public void setMedicosPorEspecialidad(HashMap<Enum, String> medicosPorEspecialidad) {
+    public void setMedicosPorEspecialidad(Medico medicosPorEspecialidad) {
         this.medicosPorEspecialidad = medicosPorEspecialidad;
     }
-
-    public static List<String> getRegistroEnfermedad() {
-        return registroEnfermedad;
-    }
-
-    public static void setRegistroEnfermedad(List<String> registroEnfermedad) {
-        Paciente.registroEnfermedad = registroEnfermedad;
-    }
 /*
-    public static void menuPaciente() throws IOException {
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("MENU PACIENTE\n1- Consultar historial medico \n2- Salir ");
-        String textoRecoger1 = buffer.readLine();
-        int opcionMenuPaciente = Integer.parseInt(textoRecoger1);
-        try {
-            while (opcionMenuPaciente != 2) {
-                switch (opcionMenuPaciente) {
-                    case 1:
-                        consultarHistorialMedico();
-                        opcionMenuPaciente = 2;
-                        break;
-                    case 2:
-                        loggOut();
-                        break;
-                    default:
-                        System.out.println("Opcion incorrecta, intente nuevamente");
-                        menuPaciente();
-                        break;
-                }
-            }
-        } catch (NumberFormatException es) {
-            System.out.println("Opcion incorrecta, intente nuevamente");
-            menuPaciente();
-        }
-    }
-
     public static void validaLogginPaciente() throws IOException {
         int intentos = 0;
             System.out.println("Usuario: ");
             String textoRecoger1 = buffer.readLine();
             System.out.println("Password: ");
             String textoRecoger2 = buffer.readLine();
-            if (PacienteServices.validarUsuario(textoRecoger1, textoRecoger2) == true) {
+            if (PacienteServiceImpl.validarUsuario(textoRecoger1, textoRecoger2) == true) {
                 //usuarioActivo = textoRecoger1;
                 menuPaciente();
             } else {

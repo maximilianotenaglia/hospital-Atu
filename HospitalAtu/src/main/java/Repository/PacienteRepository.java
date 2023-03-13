@@ -1,25 +1,35 @@
 package Repository;
 
 import Entities.Paciente;
-import Services.EnfermeroServiceImpl;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import static Entities.Paciente.NivelUrgencia.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class PacienteRepository {
-    // Lista de pacientes debe ser PRIVADA
-    // al agregar un paciente en la lista, se le agregara un ID que debe ser unico.
-    public static List<Paciente> pacientes = new ArrayList<>();
 
-    public Paciente crearPaciente(Paciente obj1) {
-        pacientes.add(obj1);
-        return obj1;
+    public Paciente save(Paciente paciente) {
+        String query = "INSERT INTO PACIENTES (personaId) " +
+                "VALUES (?)";
+        try (PreparedStatement preparedStatement = H2Configuration.getConection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, paciente.getPersonaId());
+
+            preparedStatement.executeUpdate();
+            ResultSet result = preparedStatement.getGeneratedKeys();
+
+            if (result.next()) {
+                int id = result.getInt(1);
+                paciente.setId(id);
+            }
+
+            return paciente;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+}
+
+
 
     /*
     public static void consultarPacientes(int val1) {
@@ -90,4 +100,3 @@ public class PacienteRepository {
     }
 
      */
-}
