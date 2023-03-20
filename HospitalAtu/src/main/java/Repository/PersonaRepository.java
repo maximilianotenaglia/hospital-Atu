@@ -1,10 +1,10 @@
 package Repository;
 
 import Entities.Persona;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 
 
 public class PersonaRepository {
@@ -75,6 +75,36 @@ public class PersonaRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public Persona logginUsuario(Persona.Atributo atributoPersona, String dni, String password) {
+        String query = "SELECT * FROM PERSONAS WHERE atributoPersona = ? AND dni = ? AND password = ? ";
+        try (PreparedStatement preparedStatement = H2Configuration.getConection().prepareStatement(query)) {
+            preparedStatement.setString(1, String.valueOf(atributoPersona));
+            preparedStatement.setString(2, dni);
+            preparedStatement.setString(3, password);
+
+            ResultSet result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                int idResult = result.getInt("id");
+                atributoPersona = Persona.Atributo.valueOf(result.getString("atributoPersona"));
+                dni = result.getString("dni");
+                password = result.getString("password");
+
+                   return new Persona(
+                           idResult,
+                           atributoPersona
+                   );
+            }
+
+            return null;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

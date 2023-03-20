@@ -1,12 +1,15 @@
 package controller;
 
+import Entities.Persona;
 import Services.EnfermeroService;
 import Services.EnfermeroServiceImpl;
 import dto.EnfermeroDto;
 import dto.PersonaDto;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import static Entities.Persona.Atributo.ENFERMERO;
 
 public class EnfermeroController {
@@ -58,7 +61,7 @@ public class EnfermeroController {
 
  */
 
-    public static void menuEnfermero() throws IOException {
+    public static PersonaDto menuEnfermero(int idPersona) throws IOException {
         System.out.println("MENU ENFERMERO \n1- Asignar Enfermero al Paciente." +
                 "\n2- Crear nuevo paciente (USUARIO).\n3- Modificar historial paciente." +
                 "\n4- Tratar paciente.\n5- Recetar a un paciente." +
@@ -106,16 +109,17 @@ public class EnfermeroController {
                     break;
                 default:
                     System.out.println("Elija una opcion correcta.");
-                    // menuEnfermero();
+                    menuEnfermero(idPersona);
                     break;
             }
         } catch (NumberFormatException ex) {
             System.out.println("Elija una opcion correcta.");
-            menuEnfermero();
+            menuEnfermero(idPersona);
         }
+        return null;
     }
 
-  // ESTO HAY QUE VER SI TIENE QUE ESTAR ACA, O CREAR UN CONTROLADOR PARA LOGGIN
+    // ESTO HAY QUE VER SI TIENE QUE ESTAR ACA, O CREAR UN CONTROLADOR PARA LOGGIN
 /*
      public static void validaLogginEnfermero() throws IOException {
         System.out.println("Usuario: ");

@@ -1,9 +1,9 @@
 package controller;
 
 import Entities.Persona;
-import Repository.PersonaRepository;
 import Services.*;
 import dto.EnfermeroDto;
+import dto.MedicoDto;
 import dto.PacienteDto;
 import dto.PersonaDto;
 import java.io.BufferedReader;
@@ -16,6 +16,7 @@ public class PersonaController {
     private PersonaService personaService = new PersonaServiceImpl();
     private EnfermeroService enfermeroService = new EnfermeroServiceImpl();
     private PacienteService pacienteService = new PacienteServiceImpl();
+    private MedicoService medicoService = new MedicoServiceImpl();
 
     public void crearPersona() throws IOException {
         System.out.println("Atributo del nuevo usuario: \n1- PACIENTE \n2- ENFERMERO \n3- MEDICO");
@@ -76,11 +77,15 @@ public class PersonaController {
 
         } else if (opcionAtributo == PACIENTE) {
             PacienteDto resultPaciente = new PacienteDto(result);
-            resultPaciente = pacienteService.crearEnfermero(resultPaciente);
+            resultPaciente = pacienteService.crearPaciente(resultPaciente);
+
+            System.out.println(resultPaciente.toString());
 
         } else if (opcionAtributo == MEDICO) {
-            //  EnfermeroDto resultEnfermero = new EnfermeroDto(true, result);
-            //  resultEnfermero = enfermeroService.crearEnfermero(resultEnfermero);
+            MedicoDto resultMedico = new MedicoDto(result);
+            resultMedico = medicoService.crearMedico(resultMedico);
+
+            System.out.println(resultMedico.toString());
         }
     }
 }

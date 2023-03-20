@@ -1,8 +1,11 @@
+import controller.LogginController;
 import controller.PersonaController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import static controller.LogginController.opcionMenuInicial;
 
 /*
 Hospital
@@ -46,19 +49,18 @@ y podreis consultar conmigo las dudas que tengais en cualquier momento.
  */
 public class Main {
     static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-    public static boolean salirDeSistema = false;
-    private static PersonaController personaController = new PersonaController();
+    static boolean salirDeSistema = false;
+    private static LogginController logginController = new LogginController();
 
     public static void main(String[] args) throws IOException {
         try {
             while (salirDeSistema == false) {
-                personaController.crearPersona();
-
-            //    menuInicial();
+                logginController.menuInicial();
+                salirDeSistema = logginController.salirDelSistema(opcionMenuInicial);
             }
         } catch (NumberFormatException ex) {
             System.out.println("Elija una opcion correcta.");
-           // menuInicial();
+            logginController.menuInicial();
         }
     }
 }

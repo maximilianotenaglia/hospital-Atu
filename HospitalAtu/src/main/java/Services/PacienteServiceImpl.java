@@ -12,7 +12,7 @@ public class PacienteServiceImpl implements PacienteService {
     private PersonaService personaService = new PersonaServiceImpl();
 
     @Override
-    public PacienteDto crearEnfermero(PacienteDto nuevoPaciente) {
+    public PacienteDto crearPaciente(PacienteDto nuevoPaciente) {
         Paciente paciente = repository.save(dtoToEntity(nuevoPaciente));
         return entityToDto(paciente);
     }

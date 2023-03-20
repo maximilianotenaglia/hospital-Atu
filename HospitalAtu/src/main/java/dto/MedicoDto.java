@@ -1,16 +1,15 @@
 package dto;
 
-public class EnfermeroDto {
-
+public class MedicoDto {
     private int id;
     private PersonaDto persona;
 
-    public EnfermeroDto(int id, PersonaDto persona) {
+    public MedicoDto(int id, PersonaDto persona) {
         this.id = id;
         this.persona = persona;
     }
 
-    public EnfermeroDto(PersonaDto persona) {
+    public MedicoDto(PersonaDto persona) {
         this.persona = persona;
     }
 
@@ -30,10 +29,9 @@ public class EnfermeroDto {
         this.persona = persona;
     }
 
-
     @Override
     public String toString() {
-        return "EnfermeroDto{" +
+        return "MedicoDto{" +
                 "id=" + id +
                 ", persona=" + persona +
                 '}';

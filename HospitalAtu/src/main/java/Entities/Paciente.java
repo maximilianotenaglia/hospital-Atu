@@ -31,6 +31,8 @@ public class Paciente {
         this.id = id;
     }
 
+
+
     public Persona getPersona() {
         return persona;
     }

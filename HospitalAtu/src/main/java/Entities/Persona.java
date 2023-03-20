@@ -4,7 +4,6 @@ public class Persona {
 
     private int id;
     private Atributo atributoPersona;
-
     private String nombre;
     private String dni;
     private String direccion;
@@ -25,6 +24,17 @@ public class Persona {
         this.telefono = telefono;
         this.email = email;
         this.password = password;
+    }
+
+    public Persona(Atributo atributoPersona, String dni, String password) {
+        this.atributoPersona = atributoPersona;
+        this.dni = dni;
+        this.password = password;
+    }
+
+    public Persona(int id, Atributo atributoPersona) {
+        this.id = id;
+        this.atributoPersona = atributoPersona;
     }
 
     public int getId() {
@@ -108,6 +118,6 @@ public class Persona {
     }
 
     public enum Atributo {
-        MEDICO, ENFERMERO, PACIENTE, PERSONA
+        MEDICO, ENFERMERO, PACIENTE
     }
 }

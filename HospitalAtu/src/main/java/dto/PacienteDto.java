@@ -13,6 +13,8 @@ public class PacienteDto {
         this.persona = persona;
     }
 
+
+
     public PersonaDto getPersona() {
         return persona;
     }
@@ -27,5 +29,13 @@ public class PacienteDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "PacienteDto{" +
+                "persona=" + persona +
+                ", id=" + id +
+                '}';
     }
 }

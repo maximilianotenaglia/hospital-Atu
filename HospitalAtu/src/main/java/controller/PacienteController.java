@@ -1,7 +1,10 @@
 package controller;
 
+import Entities.Persona;
 import Services.PacienteService;
 import Services.PacienteServiceImpl;
+import dto.PersonaDto;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +16,7 @@ public class PacienteController {
     // comunicacion con el Services(impl)
     private PacienteService pacienteService = new PacienteServiceImpl();
 
-    public static void menuPaciente() throws IOException {
+    public static PersonaDto menuPaciente(int idPersona) throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("MENU PACIENTE\n1- Consultar historial medico \n2- Salir ");
         String textoRecoger1 = buffer.readLine();
@@ -22,22 +25,23 @@ public class PacienteController {
             while (opcionMenuPaciente != 2) {
                 switch (opcionMenuPaciente) {
                     case 1:
-                    //   consultarHistorialMedico();
+                        //   consultarHistorialMedico();
                         opcionMenuPaciente = 2;
                         break;
                     case 2:
-                    //    loggOut();
+                        //    loggOut();
                         break;
                     default:
                         System.out.println("Opcion incorrecta, intente nuevamente");
-                        menuPaciente();
+                        menuPaciente(idPersona);
                         break;
                 }
             }
         } catch (NumberFormatException es) {
             System.out.println("Opcion incorrecta, intente nuevamente");
-            menuPaciente();
+            menuPaciente(idPersona);
         }
+        return null;
     }
 
 }

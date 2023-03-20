@@ -1,48 +1,37 @@
 package Entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Medico  {
-    int idMedico;
-    Especialidad especialidadMedica;
-    List<Object> pacientesAsignadosAlMedico = new ArrayList<>();
+    private int personaId;
+    private int id;
+    String especialidadMedica;
 
-    boolean alta;
+    public Medico(int personaId, int id) {
+        this.personaId = personaId;
+        this.id = id;
 
-    public Medico(int idMedico, Especialidad especialidadMedica, List<Object> pacientesAsignadosAlMedico, boolean alta) {
-        this.idMedico = idMedico;
-        this.especialidadMedica = especialidadMedica;
-        this.pacientesAsignadosAlMedico = pacientesAsignadosAlMedico;
-        this.alta = alta;
     }
 
-    public int getIdMedico() {
-        return idMedico;
+    public int getPersonaId() {
+        return personaId;
     }
 
-    public void setIdMedico(int idMedico) {
-        this.idMedico = idMedico;
+    public void setPersonaId(int personaId) {
+        this.personaId = personaId;
     }
 
-    public Especialidad getEspecialidadMedica() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEspecialidadMedica() {
         return especialidadMedica;
     }
 
-    public void setEspecialidadMedica(Especialidad especialidadMedica) {
+    public void setEspecialidadMedica(String especialidadMedica) {
         this.especialidadMedica = especialidadMedica;
     }
-
-    public boolean isAlta() {
-        return alta;
-    }
-
-    public void setAlta(boolean alta) {
-        this.alta = alta;
-    }
-
-    public enum Especialidad {
-        MEDICODEFAMILIA, PEDIATRIA, ONCOLOGIA, DERMATOLOGIA, GINECOLOGIA
-    }
-
 }
