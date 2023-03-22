@@ -1,5 +1,6 @@
 package controller;
 
+import Services.*;
 import dto.PersonaDto;
 
 import java.io.BufferedReader;
@@ -7,9 +8,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class MedicoController {
+    private MedicoService medicoService = new MedicoServiceImpl();
+    private PacienteService pacienteService = new PacienteServiceImpl();
+    private PersonaService personaService = new PersonaServiceImpl();
     private static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
-    public static PersonaDto menuMedico(int idPersona) throws IOException {
+    public PersonaDto menuMedico(int idPersona) throws IOException {
+
         System.out.println("MENU MEDICO \n1- Asignar Enfermero al Paciente." +
                 "\n2- Crear nuevo paciente (USUARIO).\n3- Modificar historial paciente." +
                 "\n4- Tratar paciente.\n5- Recetar a un paciente." +
@@ -28,8 +33,11 @@ public class MedicoController {
                     //  menuEnfermero();
                     break;
                 case 3:
-                    //modificarHistorialPaciente();
-                    //menuEnfermero();
+                    System.out.println("Seleccione el Paciente:");
+                    personaService.ListarPacientes();
+                    String textoRecoger = buffer.readLine();
+                    int seleccion = Integer.parseInt(textoRecoger);
+                    pacienteService.modificarHistorial(seleccion);
                     break;
                 case 4:
 
@@ -41,8 +49,7 @@ public class MedicoController {
 
                     break;
                 case 7:
-                    //consultarListaDePacientes();
-                    //menuEnfermero();
+                    personaService.ListarPacientes();
                     break;
                 case 8:
                     //registrarEnfermedad();

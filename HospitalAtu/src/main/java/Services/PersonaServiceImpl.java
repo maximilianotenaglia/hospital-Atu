@@ -19,6 +19,7 @@ public class PersonaServiceImpl implements PersonaService {
         return entityToDto(persona);
     }
 
+
     @Override
     public PersonaDto getPersonaById(int id) {
         //implementar esta parte de la funcion, para que me lea los valores de la tabla personas
@@ -26,6 +27,22 @@ public class PersonaServiceImpl implements PersonaService {
         return entityToDto(persona);
 
     }
+
+    @Override
+    public PersonaDto ListarPacientes() {
+        for (int i = 1; i < 1000; i++) {
+            if (repository.findById(i) != null) {
+                if (repository.findById(i).getAtributoPersona() == PACIENTE) {
+                    System.out.println(repository.findById(i).getId() + " - " +
+                            repository.findById(i).getNombre());
+                }
+            } else {
+                break;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public PersonaDto logginUsuario(Persona.Atributo atributo, String dni, String password) throws IOException {

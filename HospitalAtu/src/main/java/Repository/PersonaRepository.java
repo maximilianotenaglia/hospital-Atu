@@ -93,10 +93,10 @@ public class PersonaRepository {
                 dni = result.getString("dni");
                 password = result.getString("password");
 
-                   return new Persona(
-                           idResult,
-                           atributoPersona
-                   );
+                return new Persona(
+                        idResult,
+                        atributoPersona
+                );
             }
 
             return null;
@@ -107,5 +107,7 @@ public class PersonaRepository {
 
         return null;
     }
+
+
 
 }

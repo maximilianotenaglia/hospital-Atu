@@ -4,12 +4,16 @@ import Entities.Enfermero;
 import Entities.Medico;
 import Repository.EnfermeroRepository;
 import Repository.MedicoRepository;
+import Repository.PersonaRepository;
 import dto.EnfermeroDto;
 import dto.MedicoDto;
+
+import static Entities.Persona.Atributo.PACIENTE;
 
 public class MedicoServiceImpl implements MedicoService {
 
     private MedicoRepository repository = new MedicoRepository();
+    private PersonaRepository personaRepository = new PersonaRepository();
     private PersonaService personaService = new PersonaServiceImpl();
 
     @Override
@@ -32,5 +36,6 @@ public class MedicoServiceImpl implements MedicoService {
                 personaService.getPersonaById(medico.getPersonaId())
         );
     }
+
 
 }
