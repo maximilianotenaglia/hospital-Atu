@@ -1,11 +1,9 @@
 package controller;
 
 import Entities.Persona;
-import Services.EnfermeroService;
-import Services.EnfermeroServiceImpl;
-import Services.PersonaService;
-import Services.PersonaServiceImpl;
+import Services.*;
 import dto.EnfermeroDto;
+import dto.PersonaDto;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,11 +12,14 @@ import java.io.InputStreamReader;
 import static Entities.Persona.Atributo.*;
 
 public class LogginController {
+    private LogginService loggingService = new LogginServiceImp();
     public static int opcionMenuInicial;
 
+    private PacienteController pacienteController = new PacienteController();
     private EnfermeroController enfermeroController = new EnfermeroController();
     private PersonaController personaController = new PersonaController();
     private PersonaService personaService = new PersonaServiceImpl();
+    private MedicoController medicoController = new MedicoController();
     private static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
     public void menuInicial() throws IOException {
@@ -36,6 +37,7 @@ public class LogginController {
                 case 3:
                     System.out.println("Saliendo del sistema.");
                     salirDelSistema(opcionMenuInicial);
+
                     break;
 
                 default:
@@ -80,14 +82,21 @@ public class LogginController {
         String usuario = buffer.readLine();
         System.out.println("INDIQUE PASSWORD: ");
         String password = buffer.readLine();
-        personaService.logginUsuario(atributo, usuario, password);
+        PersonaDto persona = personaService.logginUsuario(atributo, usuario, password);
+        if (persona != null) {
+            if (persona.getAtributoPersona() == PACIENTE) {
+                pacienteController.menuPaciente(persona.getId());
+            } else if (persona.getAtributoPersona() == ENFERMERO) {
+                enfermeroController.menuEnfermero(persona.getId());
+            } else if (persona.getAtributoPersona() == MEDICO) {
+                //arreglar como los de arriba
+                medicoController.menuMedico(persona.getId());
+            }
+        }
     }
 
-    public boolean salirDelSistema(int opcion) {
-        if (opcion == 3) {
-            boolean salirDelSistema = true;
-
-            return salirDelSistema;
-        }return false;
+    public boolean salirDelSistema(int opcionMenuInicial) {
+        boolean salirDelSistema = loggingService.salirDelSistema(opcionMenuInicial);
+        return salirDelSistema;
     }
 }

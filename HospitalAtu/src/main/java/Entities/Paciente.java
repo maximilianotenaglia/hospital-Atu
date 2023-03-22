@@ -31,6 +31,10 @@ public class Paciente {
         this.id = id;
     }
 
+    public Paciente(int personaId, String historialMedico ) {
+        this.personaId = personaId;
+        this.historialMedico = historialMedico;
+    }
 
 
     public Persona getPersona() {

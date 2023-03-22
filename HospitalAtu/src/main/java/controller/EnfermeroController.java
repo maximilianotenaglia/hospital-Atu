@@ -1,18 +1,14 @@
 package controller;
 
-import Entities.Persona;
 import Services.EnfermeroService;
 import Services.EnfermeroServiceImpl;
-import dto.EnfermeroDto;
 import dto.PersonaDto;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static Entities.Persona.Atributo.ENFERMERO;
-
 public class EnfermeroController {
+
     private static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
     // comunicacion con el Services(impl)
@@ -61,7 +57,8 @@ public class EnfermeroController {
 
  */
 
-    public static PersonaDto menuEnfermero(int idPersona) throws IOException {
+    public PersonaDto menuEnfermero(int idPersona) throws IOException {
+
         System.out.println("MENU ENFERMERO \n1- Asignar Enfermero al Paciente." +
                 "\n2- Crear nuevo paciente (USUARIO).\n3- Modificar historial paciente." +
                 "\n4- Tratar paciente.\n5- Recetar a un paciente." +
@@ -80,8 +77,12 @@ public class EnfermeroController {
                     //  menuEnfermero();
                     break;
                 case 3:
-                    //modificarHistorialPaciente();
-                    //menuEnfermero();
+                    System.out.println("Seleccione el paciente");
+
+                    String TextoRecoger = buffer.readLine();
+                    int opcionSeleccionada = Integer.parseInt(TextoRecoger);
+                    enfermeroService.modificarHistorialPaciente(opcionSeleccionada);
+                    menuEnfermero(idPersona);
                     break;
                 case 4:
 

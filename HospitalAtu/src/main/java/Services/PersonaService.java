@@ -12,4 +12,5 @@ public interface PersonaService {
 
     PersonaDto logginUsuario (Persona.Atributo atributo, String dni, String password) throws IOException;
 
+
 }

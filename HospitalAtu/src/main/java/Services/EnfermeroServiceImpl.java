@@ -17,6 +17,11 @@ public class EnfermeroServiceImpl implements EnfermeroService {
         return entityToDto(enfermero);
     }
 
+    @Override
+    public String modificarHistorialPaciente(int id) {
+        return null;
+    }
+
 
     private Enfermero dtoToEntiy(EnfermeroDto enfermeroDto) {
 

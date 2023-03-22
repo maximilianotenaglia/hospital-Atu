@@ -13,8 +13,7 @@ public class PacienteController {
 
     private static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
-    // comunicacion con el Services(impl)
-    private PacienteService pacienteService = new PacienteServiceImpl();
+    private static PacienteService pacienteService = new PacienteServiceImpl();
 
     public static PersonaDto menuPaciente(int idPersona) throws IOException {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +24,8 @@ public class PacienteController {
             while (opcionMenuPaciente != 2) {
                 switch (opcionMenuPaciente) {
                     case 1:
-                        //   consultarHistorialMedico();
+                        String HistorialMedico = pacienteService.consultarHistorialMedico(idPersona);
+                        System.out.println(HistorialMedico);
                         opcionMenuPaciente = 2;
                         break;
                     case 2:

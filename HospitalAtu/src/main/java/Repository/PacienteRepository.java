@@ -1,6 +1,8 @@
 package Repository;
 
 import Entities.Paciente;
+import Entities.Persona;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +29,27 @@ public class PacienteRepository {
             throw new RuntimeException(e);
         }
     }
+    public String consultarHistorialMedico(int id) {
+            String query = "SELECT * FROM PACIENTES WHERE id = ? ";
+            try (PreparedStatement preparedStatement = H2Configuration.getConection().prepareStatement(query)) {
+                preparedStatement.setInt(1, id);
+                ResultSet result = preparedStatement.executeQuery();
+
+                if (result.next()) {
+                    int idResult = result.getInt("id");
+                    String historialMedico = result.getString("historialMedico");
+                    return historialMedico;
+                }
+
+                return null;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
 }
 
 

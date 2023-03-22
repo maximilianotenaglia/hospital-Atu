@@ -17,6 +17,12 @@ public class PacienteServiceImpl implements PacienteService {
         return entityToDto(paciente);
     }
 
+    @Override
+    public String consultarHistorialMedico(int id) {
+        String historialMedico = repository.consultarHistorialMedico(id);
+        return historialMedico;
+    }
+
     private Paciente dtoToEntity(PacienteDto pacienteDto) {
 
         return new Paciente(

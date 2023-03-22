@@ -1,6 +1,4 @@
 import controller.LogginController;
-import controller.PersonaController;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

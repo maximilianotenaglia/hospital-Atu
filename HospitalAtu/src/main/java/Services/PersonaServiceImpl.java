@@ -7,9 +7,7 @@ import controller.EnfermeroController;
 import controller.MedicoController;
 import controller.PacienteController;
 import dto.PersonaDto;
-
 import java.io.IOException;
-
 import static Entities.Persona.Atributo.*;
 
 public class PersonaServiceImpl implements PersonaService {
@@ -34,19 +32,15 @@ public class PersonaServiceImpl implements PersonaService {
         Persona persona = repository.logginUsuario(atributo, dni, password);
 
         if (persona != null) {
-            if (persona.getAtributoPersona() == PACIENTE) {
-                return PacienteController.menuPaciente(persona.getId());
-            } else if (persona.getAtributoPersona() == ENFERMERO) {
-                return EnfermeroController.menuEnfermero(persona.getId());
-            } else if (persona.getAtributoPersona() == MEDICO) {
-                return MedicoController.menuMedico (persona.getId());
-            }
+            return entityToDto(persona);
+
         } else {
             System.out.println("Usuario o contraseña incorrectos");
         }
         return null;
 
     }
+
 
     private Persona dtoToEntity(PersonaDto personaDto) {
         return new Persona(
