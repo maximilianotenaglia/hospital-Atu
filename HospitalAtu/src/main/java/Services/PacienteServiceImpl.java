@@ -23,12 +23,6 @@ public class PacienteServiceImpl implements PacienteService {
         return historialMedico;
     }
 
-    @Override
-    public String modificarHistorial(int id) {
-     //   repository.modificarHistorial(id);
-        return null;
-    }
-
 
     private Paciente dtoToEntity(PacienteDto pacienteDto) {
 

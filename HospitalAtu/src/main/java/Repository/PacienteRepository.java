@@ -1,6 +1,8 @@
 package Repository;
 
 import Entities.Paciente;
+import Entities.Persona;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

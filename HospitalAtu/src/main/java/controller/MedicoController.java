@@ -37,7 +37,7 @@ public class MedicoController {
                     personaService.ListarPacientes();
                     String textoRecoger = buffer.readLine();
                     int seleccion = Integer.parseInt(textoRecoger);
-                    pacienteService.modificarHistorial(seleccion);
+                    // pacienteService.modificarHistorial(seleccion);
                     break;
                 case 4:
 

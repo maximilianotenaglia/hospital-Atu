@@ -2,6 +2,8 @@ package controller;
 
 import Services.EnfermeroService;
 import Services.EnfermeroServiceImpl;
+import Services.PersonaService;
+import Services.PersonaServiceImpl;
 import dto.PersonaDto;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +15,7 @@ public class EnfermeroController {
 
     // comunicacion con el Services(impl)
     private EnfermeroService enfermeroService = new EnfermeroServiceImpl();
+    private PersonaService personaService = new PersonaServiceImpl();
 /*
     public void crearNuevoEnfermero() throws IOException {
 
@@ -94,7 +97,7 @@ public class EnfermeroController {
 
                     break;
                 case 7:
-                    //consultarListaDePacientes();
+                    personaService.ListarPacientes();
                     //menuEnfermero();
                     break;
                 case 8:
